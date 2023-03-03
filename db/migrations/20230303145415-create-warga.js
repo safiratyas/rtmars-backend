@@ -31,19 +31,43 @@ module.exports = {
         type: Sequelize.STRING
       },
       tanggal_lahir: {
-        type: Sequelize.STRING
+        type: Sequelize.DATEONLY
       },
-      agama: {
-        type: Sequelize.STRING
+      id_agama: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: {
+            tableName: "Agamas",
+          },
+          key: "id",
+        },
       },
-      pendidikan: {
-        type: Sequelize.STRING
+      id_pendidikan: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: {
+            tableName: "Pendidikans",
+          },
+          key: "id",
+        },
       },
-      pekerjaan: {
-        type: Sequelize.STRING
+      id_pekerjaan: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: {
+            tableName: "Pekerjaans",
+          },
+          key: "id",
+        },
       },
-      gol_darah: {
-        type: Sequelize.STRING
+      id_gol_darah: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: {
+            tableName: "Golongan_Darahs",
+          },
+          key: "id",
+        },
       },
       kewarganegaraan: {
         type: Sequelize.STRING
