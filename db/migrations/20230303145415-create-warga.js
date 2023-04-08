@@ -12,6 +12,12 @@ module.exports = {
       nama_lengkap: {
         type: Sequelize.STRING
       },
+      email: {
+        type: Sequelize.STRING
+      },
+      password: {
+        type: Sequelize.STRING
+      },
       alamat: {
         type: Sequelize.STRING
       },
@@ -65,6 +71,15 @@ module.exports = {
         references: {
           model: {
             tableName: "Golongan_Darahs",
+          },
+          key: "id",
+        },
+      },
+      id_pengurus: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: {
+            tableName: "Pengurus",
           },
           key: "id",
         },

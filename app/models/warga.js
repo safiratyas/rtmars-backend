@@ -25,6 +25,8 @@ module.exports = (sequelize, DataTypes) => {
   }
   Warga.init({
     nama_lengkap: DataTypes.STRING,
+    email: DataTypes.STRING,
+    password: DataTypes.STRING,
     alamat: DataTypes.STRING,
     jenis_kelamin: DataTypes.STRING,
     umur: DataTypes.INTEGER,
@@ -35,7 +37,8 @@ module.exports = (sequelize, DataTypes) => {
     id_agama: DataTypes.INTEGER,
     id_pendidikan: DataTypes.INTEGER,
     id_pekerjaan: DataTypes.INTEGER,
-    id_gol_darah: DataTypes.STRING,
+    id_gol_darah: DataTypes.INTEGER,
+    id_pengurus: DataTypes.INTEGER,
     kewarganegaraan: DataTypes.STRING,
   }, {
     sequelize,
