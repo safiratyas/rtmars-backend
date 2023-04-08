@@ -84,6 +84,12 @@ module.exports = {
           key: "id",
         },
       },
+      foto_kk: {
+        type: Sequelize.STRING
+      },
+      foto_ktp: {
+        type: Sequelize.STRING
+      },
       kewarganegaraan: {
         type: Sequelize.STRING
       },
