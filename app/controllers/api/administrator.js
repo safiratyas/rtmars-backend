@@ -1,4 +1,4 @@
-const adminService = require("../../services/admin")
+const administrator_service = require("../../services/admin")
 const {
   checkPassword,
   createToken
@@ -10,7 +10,7 @@ module.exports = {
       const email = req.body.email.toLowerCase();
       const password = req.body.password;
 
-      const admin = await adminService.getOne({
+      const admin = await administrator_service.getOne({
         where: {
           email
         },
@@ -80,7 +80,7 @@ module.exports = {
 
   async getAdmin(req, res) {
     try {
-      const admin = await adminServices.getOne({
+      const admin = await administrator_services.getOne({
         where: {
           id: req.params.id
         },
@@ -90,7 +90,7 @@ module.exports = {
       });
 
       if (!admin) {
-        throw new Error(`Admin dengan ID ${req.params.id} tidak ditemukan!`);
+        throw new Error(`Pengurus dengan ID ${req.params.id} tidak ditemukan!`);
       }
 
       res.status(200).json(admin);
@@ -103,7 +103,7 @@ module.exports = {
   },
 
   async getAllAdmins(req, res) {
-    const getAll = await adminServices.list({
+    const getAll = await administrator_services.list({
       attributes: {
         exclude: ['password']
       }
