@@ -1,4 +1,4 @@
-const administrator_service = require("../../services/administrator")
+const citizen_service = require("../../services/citizen")
 const {
   checkPassword,
   createToken
@@ -10,13 +10,13 @@ module.exports = {
       const email = req.body.email.toLowerCase();
       const password = req.body.password;
 
-      const admin = await administrator_service.getOne({
+      const citizen = await citizen_service.getOne({
         where: {
           email
         },
       });
 
-      if (!admin) {
+      if (!citizen) {
         res.status(404).json({
           status: "Failed",
           message: "Email tidak ditemukan!"
@@ -24,7 +24,7 @@ module.exports = {
         return;
       }
 
-      const isPasswordCorrect = await checkPassword(password, admin.password);
+      const isPasswordCorrect = await checkPassword(password, citizen.password);
 
       if (!isPasswordCorrect) {
         res.status(401).json({
@@ -35,20 +35,20 @@ module.exports = {
       }
 
       const token = createToken({
-        id: admin.id,
-        name: admin.name,
-        email: admin.email
+        id: citizen.id,
+        name: citizen.name,
+        email: citizen.email
       }, process.env.JWT_PRIVATE_KEY || "Token", {
         expiresIn: "2d"
       });
 
       res.status(201).json({
-        id: admin.id,
-        name: admin.name,
-        email: admin.email,
+        id: citizen.id,
+        name: citizen.name,
+        email: citizen.email,
         token,
-        createdAt: admin.createdAt,
-        updatedAt: admin.updatedAt,
+        createdAt: citizen.createdAt,
+        updatedAt: citizen.updatedAt,
       });
 
     } catch (err) {
@@ -70,9 +70,9 @@ module.exports = {
     }
   },
 
-  async getAdmin(req, res) {
+  async getCitizen(req, res) {
     try {
-      const admin = await administrator_service.getOne({
+      const citizen = await citizen_service.getOne({
         where: {
           id: req.params.id
         },
@@ -81,11 +81,11 @@ module.exports = {
         }
       });
 
-      if (!admin) {
+      if (!citizen) {
         throw new Error(`Pengurus dengan ID ${req.params.id} tidak ditemukan!`);
       }
 
-      res.status(200).json(admin);
+      res.status(200).json(citizen);
     } catch (err) {
       res.status(404).json({
         status: 'Failed',
@@ -94,8 +94,8 @@ module.exports = {
     }
   },
 
-  async getAllAdmins(req, res) {
-    const getAll = await administrator_service.list({
+  async getAllCitizens(req, res) {
+    const getAll = await citizen_service.list({
       attributes: {
         exclude: ['password']
       }

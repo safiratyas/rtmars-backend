@@ -1,13 +1,22 @@
-const administrator_service = require("../services/administrator")
+const citizen_service = require("../services/citizen")
 
 module.exports = {
   async checkCondition(req, res, next) {
     const {
+      nama_lenkap,
       email,
       password
     } = req.body;
 
-    if(!email) {
+    if (!nama_lenkap) {
+      res.status(400).json({
+        status: "Failed",
+        message: "Nama Lengkap Harus Diisi!"
+      })
+      return;
+    }
+
+    if (!email) {
       res.status(400).json({
         status: "Failed",
         message: "Email Harus Diisi!"
@@ -25,7 +34,7 @@ module.exports = {
       return;
     }
 
-    const uniqueEmail = await administrator_service.getOne({
+    const uniqueEmail = await citizen_service.getOne({
       where: {
         email
       }
@@ -46,7 +55,7 @@ module.exports = {
       });
       return;
     }
-    
+
     if (password.length < 8) {
       res.status(400).json({
         status: 'Failed',

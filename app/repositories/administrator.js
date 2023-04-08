@@ -15,7 +15,7 @@ module.exports = {
     return Pengurus.findOne(key);
   },
 
-  getTotalPengurus() {
+  getTotalAdmins() {
     return Pengurus.count();
   },
 };
