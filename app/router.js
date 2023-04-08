@@ -27,6 +27,28 @@ apiRouter.get("/api/admins",
   controllers.api.administrator.getAllAdmins
 );
 
+/**
+ * @Citizen Resources 
+ */
+
+apiRouter.post("/api/admins/login",
+  controllers.api.citizen.login
+);
+
+apiRouter.get("/api/admins/who-am-i",
+  middlewares.admin_auth.authorize,
+  controllers.api.citizen.whoAmI
+);
+
+apiRouter.get("/api/admins/:id",
+  controllers.api.citizen.getAdmin
+);
+
+apiRouter.get("/api/admins",
+  middlewares.admin_auth.authorize,
+  controllers.api.citizen.getAllCitizens
+);
+
 apiRouter.use(controllers.api.application.handleNotFound);
 
 module.exports = apiRouter;
