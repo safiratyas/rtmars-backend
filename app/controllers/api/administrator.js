@@ -1,4 +1,4 @@
-const administrator_service = require("../../services/admin")
+const administrator_service = require("../../services/administrator")
 const {
   checkPassword,
   createToken

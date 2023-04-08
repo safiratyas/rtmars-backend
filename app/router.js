@@ -6,25 +6,25 @@ const apiRouter = express.Router();
 apiRouter.get("/", controllers.api.application.getRoot);
 
 /**
- * @Admin Resources 
+ * @Administrator Resources 
  */
 
 apiRouter.post("/api/admins/login",
-  controllers.api.admin.login
+  controllers.api.administrator.login
 );
 
 apiRouter.get("/api/admins/who-am-i",
-  middlewares.adminAuthorization.authorize,
-  controllers.api.admin.whoAmI
+  middlewares.admin_auth.authorize,
+  controllers.api.administrator.whoAmI
 );
 
 apiRouter.get("/api/admins/:id",
-  controllers.api.admin.getAdmin
+  controllers.api.administrator.getAdmin
 );
 
 apiRouter.get("/api/admins",
-  middlewares.adminAuthorization.authorize,
-  controllers.api.admin.getAllAdmins
+  middlewares.admin_auth.authorize,
+  controllers.api.administrator.getAllAdmins
 );
 
 apiRouter.use(controllers.api.application.handleNotFound);

@@ -1,5 +1,7 @@
-const adminAuthorization = require("./adminAuth")
+const admin_auth = require("./administrator_auth")
+const admin_condi = require("./administrator_condi")
 
 module.exports = {
-  adminAuthorization
+  admin_auth,
+  admin_condi
 }

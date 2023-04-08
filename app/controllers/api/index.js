@@ -1,7 +1,7 @@
-const admin = require("./admin")
+const administrator = require("./administrator")
 const application = require("./application")
 
 module.exports = {
   application,
-  admin
+  administrator
 }
