@@ -97,6 +97,22 @@ apiRouter.delete("/api/educations/destroy/data",
   controllers.api.education.deleteEducation
 );
 
+/**
+ * @Job Resources 
+ */
+
+apiRouter.get("/api/jobs/:id",
+  controllers.api.job.getJob
+);
+
+apiRouter.get("/api/jobs",
+  controllers.api.job.getAllJobs
+);
+
+apiRouter.delete("/api/jobs/destroy/data",
+  controllers.api.job.deleteJob
+);
+
 
 
 apiRouter.use(controllers.api.application.handleNotFound);
