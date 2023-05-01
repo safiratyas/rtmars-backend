@@ -113,6 +113,21 @@ apiRouter.delete("/api/jobs/destroy/data",
   controllers.api.job.deleteJob
 );
 
+/**
+ * @BloodType Resources 
+ */
+
+apiRouter.get("/api/bloods/:id",
+  controllers.api.blood_type.getBloodType
+);
+
+apiRouter.get("/api/bloods",
+  controllers.api.blood_type.getAllBloods
+);
+
+apiRouter.delete("/api/bloods/destroy/data",
+  controllers.api.blood_type.deleteBloodType
+);
 
 
 apiRouter.use(controllers.api.application.handleNotFound);

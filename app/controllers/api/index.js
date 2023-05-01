@@ -4,6 +4,7 @@ const citizen = require("./citizen")
 const religion = require("./religion")
 const education = require("./education")
 const job = require("./job")
+const blood_type = require("./blood_type")
 
 module.exports = {
   application,
@@ -11,5 +12,6 @@ module.exports = {
   citizen,
   religion,
   education,
-  job
+  job,
+  blood_type
 }
