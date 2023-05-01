@@ -81,6 +81,22 @@ apiRouter.delete("/api/religions/destroy/data",
   controllers.api.religion.deleteReligion
 );
 
+/**
+ * @Education Resources 
+ */
+
+apiRouter.get("/api/educations/:id",
+  controllers.api.education.getEducation
+);
+
+apiRouter.get("/api/educations",
+  controllers.api.education.getAllEducations
+);
+
+apiRouter.delete("/api/educations/destroy/data",
+  controllers.api.education.deleteEducation
+);
+
 
 
 apiRouter.use(controllers.api.application.handleNotFound);
