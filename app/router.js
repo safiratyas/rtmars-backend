@@ -19,6 +19,7 @@ apiRouter.get("/api/admins/who-am-i",
 );
 
 apiRouter.get("/api/admins/:id",
+  middlewares.admin_auth.authorize,
   controllers.api.administrator.getAdmin
 );
 
@@ -41,15 +42,17 @@ apiRouter.post("/api/citizens/login",
 );
 
 apiRouter.put("/api/citizens/update/data",
+  middlewares.citizen_auth.authorize,
   controllers.api.citizen.updateCitizen
 );
 
 apiRouter.delete("/api/citizens/destroy/data",
+  middlewares.admin_auth.authorize,
   controllers.api.citizen.deleteCitizen
 );
 
 apiRouter.get("/api/citizens/who-am-i",
-  middlewares.admin_auth.authorize,
+  middlewares.citizen_auth.authorize,
   controllers.api.citizen.whoAmI
 );
 
@@ -61,6 +64,24 @@ apiRouter.get("/api/citizens",
   middlewares.admin_auth.authorize,
   controllers.api.citizen.getAllCitizens
 );
+
+/**
+ * @Religion Resources 
+ */
+
+apiRouter.get("/api/religions/:id",
+  controllers.api.religion.getReligion
+);
+
+apiRouter.get("/api/religions",
+  controllers.api.religion.getAllReligions
+);
+
+apiRouter.delete("/api/religions/destroy/data",
+  controllers.api.religion.deleteReligion
+);
+
+
 
 apiRouter.use(controllers.api.application.handleNotFound);
 
