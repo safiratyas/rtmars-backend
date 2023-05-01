@@ -84,6 +84,9 @@ module.exports = {
           key: "id",
         },
       },
+      foto_warga: {
+        type: Sequelize.STRING
+      },
       foto_kk: {
         type: Sequelize.STRING
       },
@@ -91,6 +94,9 @@ module.exports = {
         type: Sequelize.STRING
       },
       kewarganegaraan: {
+        type: Sequelize.STRING
+      },
+      no_hp: {
         type: Sequelize.STRING
       },
       createdAt: {

@@ -1,6 +1,18 @@
 const administrator_repo = require("../repositories/administrator");
 
 module.exports = {
+  create(requestBody) {
+    return citizen_repo.create(requestBody);
+  },
+
+  update(id, requestBody) {
+    return citizen_repo.update(id, requestBody);
+  },
+
+  delete(id) {
+    return citizen_repo.delete(id);
+  },
+  
   async list() {
     const admin = await administrator_repo.findAll();
     const adminCount = await administrator_repo.getTotalAdmins();

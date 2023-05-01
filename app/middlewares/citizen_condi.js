@@ -3,12 +3,12 @@ const citizen_service = require("../services/citizen")
 module.exports = {
   async checkCondition(req, res, next) {
     const {
-      nama_lenkap,
+      nama_lengkap,
       email,
       password
     } = req.body;
 
-    if (!nama_lenkap) {
+    if (!nama_lengkap) {
       res.status(400).json({
         status: "Failed",
         message: "Nama Lengkap Harus Diisi!"

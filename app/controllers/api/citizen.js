@@ -1,15 +1,45 @@
 const citizen_service = require("../../services/citizen")
 const {
   checkPassword,
-  createToken
+  createToken,
+  hashPassword
 } = require("../../plugins")
 
 module.exports = {
+  async register(req, res) {
+    try {
+      const password = req.body.password;
+      const encryptedPassword = await hashPassword(password, 10);
+
+      const citizen = await citizen_service.create({
+        nama_lengkap: req.body.nama_lengkap,
+        email: req.body.email.toLowerCase(),
+        password: encryptedPassword,
+      });
+
+      console.log(citizen)
+
+      res.status(201).json({
+        id: citizen.id,
+        nama_lengkap: citizen.nama_lengkap,
+        email: citizen.email,
+        createdAt: citizen.createdAt,
+        updatedAt: citizen.updatedAt
+      })
+    } catch (err) {
+      res.status(400).json({
+        status: 'Failed',
+        message: err.message
+      });
+    }
+  },
+
   async login(req, res) {
     try {
       const email = req.body.email.toLowerCase();
       const password = req.body.password;
 
+      console.log(password)
       const citizen = await citizen_service.getOne({
         where: {
           email
@@ -55,6 +85,116 @@ module.exports = {
       res.status(400).json({
         status: "Failed",
         message: err.message
+      });
+    }
+  },
+
+  async updateCitizen(req, res) {
+    try {
+      const {
+        nama_lengkap,
+        email,
+        alamat,
+        jenis_kelamin,
+        umur,
+        no_nik,
+        no_kk,
+        tempat_lahir,
+        tanggal_lahir,
+        id_agama,
+        id_pendidikan,
+        id_pekerjaan,
+        id_gol_darah,
+        kewarganegaraan,
+        foto_warga,
+        foto_kk,
+        foto_ktp,
+        no_hp
+      } = req.body;
+
+      const id = req.params.id;
+      const compareId = id.toString() === req.citizen.id.toString();
+
+      if (!compareId) {
+        res.status(401).json({
+          status: 'Failed',
+          message: 'Pasien hanya bisa edit data sesuai dengan ID pasien tersebut.'
+        });
+        return;
+      }
+
+      const update = await citizen_service.update(req.params.id, {
+        nama_lengkap,
+        email,
+        alamat,
+        jenis_kelamin,
+        umur,
+        no_nik,
+        no_kk,
+        tempat_lahir,
+        tanggal_lahir,
+        id_agama,
+        id_pendidikan,
+        id_pekerjaan,
+        id_gol_darah,
+        kewarganegaraan,
+        foto_warga,
+        foto_kk,
+        foto_ktp,
+        no_hp
+      });
+
+      res.status(200).json({
+        status: 'OK',
+        message: `Pasien dengan ID ${req.params.id} telah berhasil diperbarui.`,
+      });
+    } catch (err) {
+      res.status(422).json({
+        status: 'Failed',
+        message: err.message,
+      });
+    }
+  },
+
+  async deleteCitizen(req, res) {
+    try {
+      const id = req.params.id;
+      const citizen = await citizen_service.getOne({
+        where: {
+          id,
+        }
+      });
+
+      if (!citizen) {
+        res.status(404).json({
+          status: 'Failed',
+          message: `Warga dengan ID ${id} tidak ditemukan!`,
+        });
+        return;
+      }
+
+      const compareId = req.citizen.id === citizen.id;
+
+      if (!compareId) {
+        res.status(404).json({
+          status: 'Unauthorized',
+          message: 'Warga hanya bisa menghapus data dia sendiri!'
+        });
+        return;
+      }
+
+      const destroy = await citizen_service.delete(id);
+      res.status(200).json({
+        status: 'OK',
+        message: `Warga dengan ID ${id} berhasil dihapus`,
+      });
+
+    } catch (err) {
+      res.status(400).json({
+        error: {
+          name: err.name,
+          message: err.message,
+        }
       });
     }
   },

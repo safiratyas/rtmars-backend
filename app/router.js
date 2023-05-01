@@ -31,20 +31,33 @@ apiRouter.get("/api/admins",
  * @Citizen Resources 
  */
 
-apiRouter.post("/api/admins/login",
+apiRouter.post("/api/citizens/register",
+  middlewares.citizen_condi.checkCondition,
+  controllers.api.citizen.register
+);
+
+apiRouter.post("/api/citizens/login",
   controllers.api.citizen.login
 );
 
-apiRouter.get("/api/admins/who-am-i",
+apiRouter.put("/api/citizens/update/data",
+  controllers.api.citizen.updateCitizen
+);
+
+apiRouter.delete("/api/citizens/destroy/data",
+  controllers.api.citizen.deleteCitizen
+);
+
+apiRouter.get("/api/citizens/who-am-i",
   middlewares.admin_auth.authorize,
   controllers.api.citizen.whoAmI
 );
 
-apiRouter.get("/api/admins/:id",
-  controllers.api.citizen.getAdmin
+apiRouter.get("/api/citizens/:id",
+  controllers.api.citizen.getCitizen
 );
 
-apiRouter.get("/api/admins",
+apiRouter.get("/api/citizens",
   middlewares.admin_auth.authorize,
   controllers.api.citizen.getAllCitizens
 );
