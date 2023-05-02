@@ -15,6 +15,14 @@ module.exports = (sequelize, DataTypes) => {
   Pengurus.init({
     user_id: DataTypes.STRING,
     password: DataTypes.STRING,
+    nama: DataTypes.STRING,
+    foto_pengurus: DataTypes.STRING,
+    no_hp: DataTypes.STRING,
+    tipe_pengurus: DataTypes.STRING,
+    gender: DataTypes.STRING,
+    tempat_lahir: DataTypes.STRING,
+    tanggal_lahir: DataTypes.DATEONLY,
+    umur: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Pengurus',

@@ -15,6 +15,30 @@ module.exports = {
       password: {
         type: Sequelize.STRING
       },
+      nama: {
+        type: Sequelize.STRING
+      },
+      foto_pengurus: {
+        type: Sequelize.STRING
+      },
+      no_hp: {
+        type: Sequelize.STRING
+      },
+      tipe_pengurus: {
+        type: Sequelize.STRING
+      },
+      gender: {
+        type: Sequelize.STRING
+      },
+      tempat_lahir: {
+        type: Sequelize.STRING
+      },
+      tanggal_lahir: {
+        type: Sequelize.STRING
+      },
+      umur: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
