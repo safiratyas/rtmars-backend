@@ -7,9 +7,14 @@ const {
 } = require("sequelize");
 const bcrypt = require("bcryptjs");
 
-function getRandAlphabet(args) {
-  const getRandInt = Math.floor(Math.random() * 26);
-  return String.fromCharCode((getRandInt + 65).toString());
+function getRandTwoDigits(args) {
+  var getRandInt = Math.random().toString().substring(6, 8);
+  if (getRandInt[0] === '0' && getRandInt[1] !== '0') {
+    getRandInt = getRandInt[1];
+  } else if (getRandInt[0] === '0' && getRandInt[1] === '0') {
+    getRandInt = '1';
+  }
+  return getRandInt;
 }
 
 module.exports = {
@@ -70,7 +75,7 @@ module.exports = {
         ...users.map(() => {
           const splitName = user.name.split(' ');
           let splitWord = splitName[0] + splitName[splitName.length - 1];
-          const randAlpha = getRandAlphabet();
+          const randAlpha = getRandTwoDigits();
           const rand = Math.floor(Math.random() * 10);
 
           return ({
