@@ -41,7 +41,7 @@ apiRouter.post("/api/citizens/login",
   controllers.api.citizen.login
 );
 
-apiRouter.put("/api/citizens/update/data",
+apiRouter.put("/api/citizens/update/data/:id",
   middlewares.citizen_auth.authorize,
   controllers.api.citizen.updateCitizen
 );
@@ -57,6 +57,7 @@ apiRouter.get("/api/citizens/who-am-i",
 );
 
 apiRouter.get("/api/citizens/:id",
+  middlewares.citizen_auth.authorize,
   controllers.api.citizen.getCitizen
 );
 

@@ -123,7 +123,7 @@ module.exports = {
         return;
       }
 
-      const update = await citizen_service.update(req.params.id, {
+      const updateData = await citizen_service.update(req.params.id, {
         nama_lengkap,
         email,
         alamat,
@@ -200,14 +200,7 @@ module.exports = {
   },
 
   async whoAmI(req, res) {
-    try {
-      res.status(200).json();
-    } catch (err) {
-      res.status(404).json({
-        status: 'Failed',
-        message: err.message,
-      });
-    }
+    res.status(200).json(req.citizen);
   },
 
   async getCitizen(req, res) {
@@ -222,7 +215,18 @@ module.exports = {
       });
 
       if (!citizen) {
-        throw new Error(`Pengurus dengan ID ${req.params.id} tidak ditemukan!`);
+        throw new Error(`Warga dengan ID ${req.params.id} tidak ditemukan!`);
+      }
+
+      const compareId = req.citizen.id === citizen.id;
+      console.log(compareId)
+
+      if (!compareId) {
+        res.status(401).json({
+          status: 'Unauthorized',
+          message: 'Warga hanya bisa melihat data dia sendiri!'
+        });
+        return;
       }
 
       res.status(200).json(citizen);
