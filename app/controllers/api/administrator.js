@@ -7,19 +7,19 @@ const {
 module.exports = {
   async login(req, res) {
     try {
-      const email = req.body.email.toLowerCase();
+      const user_id = req.body.user_id.toLowerCase();
       const password = req.body.password;
 
       const admin = await administrator_service.getOne({
         where: {
-          email
+          user_id
         },
       });
 
       if (!admin) {
         res.status(404).json({
           status: "Failed",
-          message: "Email tidak ditemukan!"
+          message: "User ID tidak ditemukan!"
         });
         return;
       }
@@ -36,16 +36,16 @@ module.exports = {
 
       const token = createToken({
         id: admin.id,
-        name: admin.name,
-        email: admin.email
+        nama_lengkap: admin.nama_lengkap,
+        user_id: admin.user_id
       }, process.env.JWT_PRIVATE_KEY || "Token", {
         expiresIn: "2d"
       });
 
       res.status(201).json({
         id: admin.id,
-        name: admin.name,
-        email: admin.email,
+        nama_lengkap: admin.nama_lengkap,
+        user_id: admin.user_id,
         token,
         createdAt: admin.createdAt,
         updatedAt: admin.updatedAt,
@@ -60,14 +60,7 @@ module.exports = {
   },
 
   async whoAmI(req, res) {
-    try {
-      res.status(200).json();
-    } catch (err) {
-      res.status(404).json({
-        status: 'Failed',
-        message: err.message,
-      });
-    }
+    res.status(200).json(req.admin);
   },
 
   async getAdmin(req, res) {

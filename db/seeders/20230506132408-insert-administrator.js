@@ -80,7 +80,7 @@ module.exports = {
 
           return ({
             nama: user.name,
-            user_id: randAlpha + splitWord.toLowerCase(),
+            user_id: splitWord.toLowerCase(),
             password: encryptedPassword,
             tempat_lahir: user.tempat_lahir,
             tanggal_lahir: user.tanggal_lahir,

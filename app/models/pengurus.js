@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Pengurus.init({
     user_id: DataTypes.STRING,
+    nama_lengkap: DataTypes.STRING,
     password: DataTypes.STRING,
     nama: DataTypes.STRING,
     foto_pengurus: DataTypes.STRING,

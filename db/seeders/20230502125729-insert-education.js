@@ -2,20 +2,21 @@
 
 /** @type {import('sequelize-cli').Migration} */
 
-const educations = [
-  "SD",
-  "SMP",
-  "SMA",
-  "D3",
-  "D4",
-  "S1",
-  "S2",
-  "S3",
-  "Lainnya"
-]
-
 module.exports = {
   async up(queryInterface, Sequelize) {
+
+    const educations = [
+      "SD",
+      "SMP",
+      "SMA",
+      "D3",
+      "D4",
+      "S1",
+      "S2",
+      "S3",
+      "Lainnya"
+    ]
+
     const education = educations.map((edu) => ({
       nama: edu,
       createdAt: new Date(),
