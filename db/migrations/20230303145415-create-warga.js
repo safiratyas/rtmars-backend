@@ -28,10 +28,10 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       no_nik: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       no_kk: {
-        type: Sequelize.INTEGER
+        type: Sequelize.STRING
       },
       tempat_lahir: {
         type: Sequelize.STRING
