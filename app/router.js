@@ -2,6 +2,7 @@ const express = require("express");
 const controllers = require("./controllers");
 const middlewares = require("./middlewares");
 const apiRouter = express.Router();
+const uploadOnMemory = require("../config/uploadOnMemory")
 
 apiRouter.get("/", controllers.api.application.getRoot);
 
@@ -128,6 +129,15 @@ apiRouter.get("/api/bloods",
 
 apiRouter.delete("/api/bloods/destroy/data",
   controllers.api.blood_type.deleteBloodType
+);
+
+/**
+ * @Upload Resources
+ */
+apiRouter.put(
+  "/api/citizens/picture/:id/cloudinary",
+  uploadOnMemory.single("picture"),
+  controllers.api.image.uploadPhoto,
 );
 
 
