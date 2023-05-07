@@ -79,7 +79,7 @@ module.exports = {
           const rand = Math.floor(Math.random() * 10);
 
           return ({
-            nama: user.name,
+            nama_lengkap: user.name,
             user_id: splitWord.toLowerCase(),
             password: encryptedPassword,
             tempat_lahir: user.tempat_lahir,
