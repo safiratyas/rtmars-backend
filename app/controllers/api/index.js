@@ -5,6 +5,7 @@ const religion = require("./religion")
 const education = require("./education")
 const job = require("./job")
 const blood_type = require("./blood_type")
+const document = require("./document")
 const image = require("./image")
 
 module.exports = {
@@ -15,5 +16,6 @@ module.exports = {
   education,
   job,
   blood_type,
+  document,
   image
 }

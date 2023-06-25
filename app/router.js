@@ -140,6 +140,15 @@ apiRouter.put(
   controllers.api.image.uploadPhoto,
 );
 
+/**
+ * @Document Resources 
+ */
+
+apiRouter.post("/api/citizens/documents/create",
+  middlewares.citizen_condi.checkCondition,
+  controllers.api.citizen.register
+);
+
 apiRouter.use(controllers.api.application.handleNotFound);
 
 module.exports = apiRouter;
