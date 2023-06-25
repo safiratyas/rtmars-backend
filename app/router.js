@@ -25,7 +25,7 @@ apiRouter.get("/api/admins/:id",
 );
 
 apiRouter.get("/api/admins",
-  middlewares.admin_auth.authorize,
+  // middlewares.admin_auth.authorize,
   controllers.api.administrator.getAllAdmins
 );
 
@@ -139,7 +139,6 @@ apiRouter.put(
   uploadOnMemory.single("picture"),
   controllers.api.image.uploadPhoto,
 );
-
 
 apiRouter.use(controllers.api.application.handleNotFound);
 

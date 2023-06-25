@@ -93,23 +93,20 @@ module.exports = {
     try {
       const {
         nama_lengkap,
-        email,
         alamat,
         jenis_kelamin,
         umur,
-        no_nik,
-        no_kk,
         tempat_lahir,
         tanggal_lahir,
         id_agama,
         id_pendidikan,
         id_pekerjaan,
-        id_gol_darah,
         kewarganegaraan,
         foto_warga,
         foto_kk,
         foto_ktp,
-        no_hp
+        no_hp,
+        id_warga,
       } = req.body;
 
       const id = req.params.id;
@@ -124,19 +121,16 @@ module.exports = {
       }
 
       const updateData = await citizen_service.update(req.params.id, {
+        id_warga: req.citizen.id,
         nama_lengkap,
-        email,
         alamat,
         jenis_kelamin,
         umur,
-        no_nik,
-        no_kk,
         tempat_lahir,
         tanggal_lahir,
         id_agama,
         id_pendidikan,
         id_pekerjaan,
-        id_gol_darah,
         kewarganegaraan,
         foto_warga,
         foto_kk,
@@ -147,6 +141,7 @@ module.exports = {
       res.status(200).json({
         status: 'OK',
         message: `Pasien dengan ID ${req.params.id} telah berhasil diperbarui.`,
+        data: updateData
       });
     } catch (err) {
       res.status(422).json({
