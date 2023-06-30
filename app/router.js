@@ -42,9 +42,14 @@ apiRouter.post("/api/citizens/login",
   controllers.api.citizen.login
 );
 
-apiRouter.put("/api/citizens/update/data/:id",
+apiRouter.post("/api/citizens/create/data",
   middlewares.citizen_auth.authorize,
-  controllers.api.citizen.updateCitizen
+  controllers.api.citizen.createCitizen
+);
+
+apiRouter.put("/api/citizens/update/profile/:id",
+  middlewares.citizen_auth.authorize,
+  controllers.api.citizen.updateProfile
 );
 
 apiRouter.delete("/api/citizens/destroy/data",
@@ -151,7 +156,7 @@ apiRouter.post("/api/citizens/documents/create",
 );
 
 apiRouter.get("/api/documents",
-  middlewares.admin_auth.authorize,
+  middlewares.citizen_auth.authorize,
   controllers.api.document.getAllDocuments
 );
 

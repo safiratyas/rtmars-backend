@@ -54,14 +54,14 @@ module.exports = {
 
   async getDocument(req, res) {
     try {
-      const document = await document_service.getOne({
+      const document = await document_service.list({
         where: {
           id_warga: req.params.id
         },
       });
 
       if (!document) {
-        throw new Error(`Warga dengan ID ${req.params.id} tidak ditemukan!`);
+        throw new Error(`Dokumen Warga dengan ID ${req.params.id} tidak ditemukan!`);
       }
 
       const compareId = req.citizen.id === document.id_warga;

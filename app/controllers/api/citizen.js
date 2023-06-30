@@ -89,7 +89,7 @@ module.exports = {
     }
   },
 
-  async updateCitizen(req, res) {
+  async createCitizen(req, res) {
     try {
       const {
         nama_lengkap,
@@ -190,6 +190,53 @@ module.exports = {
           name: err.name,
           message: err.message,
         }
+      });
+    }
+  },
+
+  async updateProfile(req, res) {
+    try {
+      const {
+        tempat_lahir,
+        tanggal_lahir,
+        alamat,
+        umur,
+        no_hp,
+        foto_warga,
+        foto_kk,
+        foto_ktp,
+      } = req.body;
+
+      const id = req.params.id;
+      const compareId = id.toString() === req.citizen.id.toString();
+
+      if (!compareId) {
+        res.status(401).json({
+          status: 'Failed',
+          message: 'Warga hanya bisa edit data sesuai dengan ID pasien tersebut.'
+        });
+        return;
+      }
+
+      const updateData = await citizen_service.update(req.params.id, {
+        alamat,
+        tempat_lahir,
+        tanggal_lahir,
+        umur,
+        foto_warga,
+        foto_kk,
+        foto_ktp,
+        no_hp
+      });
+
+      res.status(200).json({
+        status: 'OK',
+        message: `Warga dengan ID ${req.params.id} telah berhasil diperbarui.`
+      });
+    } catch (err) {
+      res.status(422).json({
+        status: 'Failed',
+        message: err.message,
       });
     }
   },
