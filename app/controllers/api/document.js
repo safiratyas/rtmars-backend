@@ -42,4 +42,45 @@ module.exports = {
       });
     }
   },
+
+  async getAllDocuments(req, res) {
+    const getAll = await document_service.list();
+
+    res.status(200).json({
+      status: 'Success',
+      data: getAll
+    });
+  },
+
+  async getDocument(req, res) {
+    try {
+      const document = await document_service.getOne({
+        where: {
+          id_warga: req.params.id
+        },
+      });
+
+      if (!document) {
+        throw new Error(`Warga dengan ID ${req.params.id} tidak ditemukan!`);
+      }
+
+      const compareId = req.citizen.id === document.id_warga;
+      console.log(req.citizen.id)
+
+      if (!compareId) {
+        res.status(401).json({
+          status: 'Unauthorized',
+          message: 'Warga hanya bisa melihat data dia sendiri!'
+        });
+        return;
+      }
+
+      res.status(200).json(document);
+    } catch (err) {
+      res.status(404).json({
+        status: 'Failed',
+        message: err.message,
+      });
+    }
+  },
 }

@@ -150,6 +150,16 @@ apiRouter.post("/api/citizens/documents/create",
   controllers.api.document.createDocument
 );
 
+apiRouter.get("/api/documents",
+  middlewares.admin_auth.authorize,
+  controllers.api.document.getAllDocuments
+);
+
+apiRouter.get("/api/documents/:id",
+  middlewares.citizen_auth.authorize,
+  controllers.api.document.getDocument
+);
+
 apiRouter.use(controllers.api.application.handleNotFound);
 
 module.exports = apiRouter;
