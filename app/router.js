@@ -145,8 +145,9 @@ apiRouter.put(
  */
 
 apiRouter.post("/api/citizens/documents/create",
-  middlewares.citizen_condi.checkCondition,
-  controllers.api.citizen.register
+  middlewares.citizen_auth.authorize,
+  middlewares.document_condi.checkCondition,
+  controllers.api.document.createDocument
 );
 
 apiRouter.use(controllers.api.application.handleNotFound);
