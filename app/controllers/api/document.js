@@ -58,6 +58,9 @@ module.exports = {
         where: {
           id_warga: req.params.id
         },
+        order: [
+          ['id', 'DESC'],
+      ],
       });
 
       if (!document) {

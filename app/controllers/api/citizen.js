@@ -95,53 +95,38 @@ module.exports = {
         nama_lengkap,
         alamat,
         jenis_kelamin,
-        umur,
         tempat_lahir,
         tanggal_lahir,
         id_agama,
         id_pendidikan,
         id_pekerjaan,
         kewarganegaraan,
-        foto_warga,
         foto_kk,
-        foto_ktp,
-        no_hp,
-        id_warga,
+        // foto_ktp,
+        no_nik,
+        no_kk
       } = req.body;
 
-      const id = req.params.id;
-      const compareId = id.toString() === req.citizen.id.toString();
-
-      if (!compareId) {
-        res.status(401).json({
-          status: 'Failed',
-          message: 'Pasien hanya bisa edit data sesuai dengan ID pasien tersebut.'
-        });
-        return;
-      }
-
-      const updateData = await citizen_service.update(req.params.id, {
-        id_warga: req.citizen.id,
+      const createData = await citizen_service.create({
         nama_lengkap,
         alamat,
         jenis_kelamin,
-        umur,
         tempat_lahir,
         tanggal_lahir,
         id_agama,
         id_pendidikan,
         id_pekerjaan,
         kewarganegaraan,
-        foto_warga,
         foto_kk,
-        foto_ktp,
-        no_hp
+        // foto_ktp,
+        no_nik,
+        no_kk
       });
 
       res.status(200).json({
         status: 'OK',
-        message: `Pasien dengan ID ${req.params.id} telah berhasil diperbarui.`,
-        data: updateData
+        message: `Warga telah berhasil diinput.`,
+        // data: createData
       });
     } catch (err) {
       res.status(422).json({
@@ -197,14 +182,17 @@ module.exports = {
   async updateProfile(req, res) {
     try {
       const {
+        jenis_kelamin,
         tempat_lahir,
         tanggal_lahir,
         alamat,
         umur,
         no_hp,
+        no_kk,
+        no_nik,
         foto_warga,
-        foto_kk,
-        foto_ktp,
+        // foto_kk,
+        // foto_ktp,
       } = req.body;
 
       const id = req.params.id;
@@ -219,14 +207,17 @@ module.exports = {
       }
 
       const updateData = await citizen_service.update(req.params.id, {
+        jenis_kelamin,
         alamat,
         tempat_lahir,
-        tanggal_lahir,
+        tanggal_lahir: timeFormat(tanggal_lahir),
         umur,
+        no_kk,
+        no_nik,
         foto_warga,
-        foto_kk,
-        foto_ktp,
         no_hp
+        // foto_kk,
+        // foto_ktp,
       });
 
       res.status(200).json({

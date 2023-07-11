@@ -7,6 +7,7 @@ const job = require("./job")
 const blood_type = require("./blood_type")
 const document = require("./document")
 const image = require("./image")
+const notification = require("./notification")
 
 module.exports = {
   application,
@@ -17,5 +18,6 @@ module.exports = {
   job,
   blood_type,
   document,
-  image
+  image,
+  notification
 }

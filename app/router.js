@@ -141,8 +141,16 @@ apiRouter.delete("/api/bloods/destroy/data",
  */
 apiRouter.put(
   "/api/citizens/picture/:id/cloudinary",
+  middlewares.citizen_auth.authorize,
   uploadOnMemory.single("picture"),
   controllers.api.image.uploadPhoto,
+);
+
+apiRouter.post(
+  "/api/citizens/picture/citizen/cloudinary",
+  middlewares.admin_auth.authorize,
+  uploadOnMemory.single("picture"),
+  controllers.api.image.uploadPhotoCitizen,
 );
 
 /**
@@ -163,6 +171,15 @@ apiRouter.get("/api/documents",
 apiRouter.get("/api/documents/:id",
   middlewares.citizen_auth.authorize,
   controllers.api.document.getDocument
+);
+
+/**
+ * @Notifications Resources 
+ */
+
+apiRouter.get("/api/notifications",
+  middlewares.admin_auth.authorize,
+  controllers.api.notification.getAllNotification
 );
 
 apiRouter.use(controllers.api.application.handleNotFound);
