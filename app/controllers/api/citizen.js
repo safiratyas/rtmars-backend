@@ -3,7 +3,8 @@ const {
   checkPassword,
   createToken,
   hashPassword
-} = require("../../plugins")
+} = require("../../plugins");
+const timeFormat = require("../../utils/timeFormat");
 
 module.exports = {
   async register(req, res) {
@@ -89,53 +90,6 @@ module.exports = {
     }
   },
 
-  async createCitizen(req, res) {
-    try {
-      const {
-        nama_lengkap,
-        alamat,
-        jenis_kelamin,
-        tempat_lahir,
-        tanggal_lahir,
-        id_agama,
-        id_pendidikan,
-        id_pekerjaan,
-        kewarganegaraan,
-        foto_kk,
-        // foto_ktp,
-        no_nik,
-        no_kk
-      } = req.body;
-
-      const createData = await citizen_service.create({
-        nama_lengkap,
-        alamat,
-        jenis_kelamin,
-        tempat_lahir,
-        tanggal_lahir,
-        id_agama,
-        id_pendidikan,
-        id_pekerjaan,
-        kewarganegaraan,
-        foto_kk,
-        // foto_ktp,
-        no_nik,
-        no_kk
-      });
-
-      res.status(200).json({
-        status: 'OK',
-        message: `Warga telah berhasil diinput.`,
-        // data: createData
-      });
-    } catch (err) {
-      res.status(422).json({
-        status: 'Failed',
-        message: err.message,
-      });
-    }
-  },
-
   async deleteCitizen(req, res) {
     try {
       const id = req.params.id;
@@ -210,7 +164,7 @@ module.exports = {
         jenis_kelamin,
         alamat,
         tempat_lahir,
-        tanggal_lahir: timeFormat(tanggal_lahir),
+        tanggal_lahir,
         umur,
         no_kk,
         no_nik,

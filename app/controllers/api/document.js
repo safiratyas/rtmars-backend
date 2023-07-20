@@ -86,4 +86,47 @@ module.exports = {
       });
     }
   },
+
+  async deleteDocument(req, res) {
+    try {
+      const id = req.params.id;
+      const document = await document_service.getOne({
+        where: {
+          id,
+        }
+      });
+
+      if (!document) {
+        res.status(404).json({
+          status: 'Failed',
+          message: `Dokumen dengan ID ${id} tidak ditemukan!`,
+        });
+        return;
+      }
+
+      const compareId = req.citizen.id === document.id_warga;
+
+      if (!compareId) {
+        res.status(404).json({
+          status: 'Unauthorized',
+          message: 'Warga hanya bisa menghapus data dia sendiri!'
+        });
+        return;
+      }
+
+      const destroy = await document_service.delete(id);
+      res.status(200).json({
+        status: 'OK',
+        message: `Dokumen Warga dengan ID ${id} berhasil dihapus`,
+      });
+
+    } catch (err) {
+      res.status(400).json({
+        error: {
+          name: err.name,
+          message: err.message,
+        }
+      });
+    }
+  },
 }

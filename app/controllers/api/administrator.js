@@ -99,4 +99,78 @@ module.exports = {
       data: getAll
     });
   },
+
+  async createCitizen(req, res) {
+    try {
+      const {
+        nama_lengkap,
+        alamat,
+        jenis_kelamin,
+        tempat_lahir,
+        tanggal_lahir,
+        id_agama,
+        id_pendidikan,
+        id_pekerjaan,
+        kewarganegaraan,
+        foto_kk,
+        // foto_ktp,
+        no_nik,
+        no_kk
+      } = req.body;
+
+      const createData = await citizen_service.create({
+        nama_lengkap,
+        alamat,
+        jenis_kelamin,
+        tempat_lahir,
+        tanggal_lahir,
+        id_agama,
+        id_pendidikan,
+        id_pekerjaan,
+        kewarganegaraan,
+        foto_kk,
+        // foto_ktp,
+        no_nik,
+        no_kk
+      });
+
+      res.status(200).json({
+        status: 'OK',
+        message: `Warga telah berhasil diinput.`,
+        // data: createData
+      });
+    } catch (err) {
+      res.status(422).json({
+        status: 'Failed',
+        message: err.message,
+      });
+    }
+  },
+
+  // async createAgenda(req, res) {
+  //   try {
+  //     const {
+  //       jenis_kegiatan,
+  //       keterangan,
+  //       foto_kegiatan,
+  //     } = req.body;
+
+  //     const createData = await citizen_service.create({
+  //       jenis_kelamin,
+  //       keterangan,
+  //       foto_kegiatan,
+  //     });
+
+  //     res.status(200).json({
+  //       status: 'OK',
+  //       message: `Kegiatan telah berhasil diinput.`,
+  //       // data: createData
+  //     });
+  //   } catch (err) {
+  //     res.status(422).json({
+  //       status: 'Failed',
+  //       message: err.message,
+  //     });
+  //   }
+  // },
 }

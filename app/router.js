@@ -173,6 +173,11 @@ apiRouter.get("/api/documents/:id",
   controllers.api.document.getDocument
 );
 
+apiRouter.delete("/api/documents/destroy/data/:id",
+  middlewares.citizen_auth.authorize,
+  controllers.api.document.deleteDocument
+);
+
 /**
  * @Notifications Resources 
  */
