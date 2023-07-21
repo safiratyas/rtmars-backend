@@ -44,7 +44,7 @@ apiRouter.post("/api/citizens/login",
 
 apiRouter.post("/api/citizens/create/data",
   middlewares.citizen_auth.authorize,
-  controllers.api.citizen.createCitizen
+  controllers.api.administrator.createCitizen
 );
 
 apiRouter.put("/api/citizens/update/profile/:id",
@@ -179,13 +179,26 @@ apiRouter.delete("/api/documents/destroy/data/:id",
 );
 
 /**
+ * @Agenda Resources 
+ */
+
+apiRouter.post("/api/citizens/agendas/create",
+  middlewares.admin_auth.authorize,
+  controllers.api.agenda.createAgenda
+);
+
+apiRouter.get("/api/agendas",
+  controllers.api.agenda.getAllAgenda
+);
+
+/**
  * @Notifications Resources 
  */
 
-apiRouter.get("/api/notifications",
-  middlewares.admin_auth.authorize,
-  controllers.api.notification.getAllNotification
-);
+// apiRouter.get("/api/notifications",
+//   middlewares.admin_auth.authorize,
+//   controllers.api.notification.getAllNotification
+// );
 
 apiRouter.use(controllers.api.application.handleNotFound);
 

@@ -1,41 +1,33 @@
-const {
-  Pengurus
-} = require("../models");
+const agenda_repo = require("../repositories/agenda");
 
 module.exports = {
-  create(inputData) {
-    return Pengurus.create(inputData);
+  create(requestBody) {
+    return agenda_repo.create(requestBody);
   },
 
-  update(id, updateData) {
-    return Pengurus.update(updateData, {
-      where: {
-        id
-      }
-    });
+  update(id, requestBody) {
+    return agenda_repo.update(id, requestBody);
   },
 
   delete(id) {
-    return Pengurus.destroy({
-      where: {
-        id
-      }
-    });
+    return agenda_repo.delete(id);
+  },
+  
+  async list() {
+    const agenda = await agenda_repo.findAll();
+    const agendaCount = await agenda_repo.getTotalAgendas();
+
+    return {
+      data: agenda,
+      count: agendaCount
+    }
   },
 
-  find(id) {
-    return Pengurus.findByPk(id);
+  get(id) {
+    return agenda_repo.find(id)
   },
 
-  findAll() {
-    return Pengurus.findAll();
-  },
-
-  findOne(key) {
-    return Pengurus.findOne(key);
-  },
-
-  getTotalAdmins() {
-    return Pengurus.count();
-  },
-};
+  getOne(key) {
+    return agenda_repo.findOne(key)
+  }
+}

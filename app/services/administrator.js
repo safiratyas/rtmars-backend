@@ -2,15 +2,15 @@ const administrator_repo = require("../repositories/administrator");
 
 module.exports = {
   create(requestBody) {
-    return citizen_repo.create(requestBody);
+    return administrator_repo.create(requestBody);
   },
 
   update(id, requestBody) {
-    return citizen_repo.update(id, requestBody);
+    return administrator_repo.update(id, requestBody);
   },
 
   delete(id) {
-    return citizen_repo.delete(id);
+    return administrator_repo.delete(id);
   },
   
   async list() {

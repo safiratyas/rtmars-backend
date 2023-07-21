@@ -18,15 +18,6 @@ module.exports = {
       foto_kegiatan: {
         type: Sequelize.STRING
       },
-      id_warga: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: {
-            tableName: "Wargas",
-          },
-          key: "id",
-        },
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

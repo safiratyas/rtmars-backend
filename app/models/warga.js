@@ -25,10 +25,6 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'id_warga',
         as: 'warga',
       });
-      this.hasMany(models.Agenda, {
-        foreignKey: 'id_agenda',
-        as: 'agenda',
-      });
     }
   }
   Warga.init({

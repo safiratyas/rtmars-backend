@@ -1,22 +1,8 @@
-// const Warga = require("../../models")
-// const {
-//   Op
-// } = require("sequelize");
-// const citizen_service = require("../../services/citizen");
 const document_service = require("../../services/document");
 
 module.exports = {
   async createDocument(req, res) {
     try {
-      // const getListCitizen = await citizen_service.get(req.params.id, {
-      //   include: {
-      //     model: Warga,
-      //     as: 'warga',
-      //   },
-      // });
-
-      // console.log(getListCitizen + "cekkkkkkkkkkkkkkkkkkkkkk")
-
      const document = await document_service.create({
         tanggal_pengajuan: req.body.tanggal_pengajuan,
         jenis_dokumen: req.body.jenis_dokumen,
