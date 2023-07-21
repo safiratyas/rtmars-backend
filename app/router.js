@@ -195,10 +195,10 @@ apiRouter.get("/api/agendas",
  * @Notifications Resources 
  */
 
-// apiRouter.get("/api/notifications",
-//   middlewares.admin_auth.authorize,
-//   controllers.api.notification.getAllNotification
-// );
+apiRouter.get("/api/notifications",
+  middlewares.admin_auth.authorize,
+  controllers.api.notification.getAllNotification
+);
 
 apiRouter.use(controllers.api.application.handleNotFound);
 
