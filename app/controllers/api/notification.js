@@ -44,31 +44,6 @@ module.exports = {
         }),
       );
 
-      // console.log(results)
-
-      // const results = [].concat(
-      //   getEvent.data.map((event) => {
-      //     return ({
-      //       information: "Terdapat Agenda Terbaru",
-      //       event
-      //     });
-      //   }),
-      //   getDocument.data.map((document) => {
-      //     return ({
-      //       information: "Request Surat Kepengurusan Baru",
-      //       document
-      //     });
-      //   }),
-      //   // getTransactionBuyer.map((tb) => {
-      //   //   return ({
-      //   //     information: "Product of this user that want to buy.",
-      //   //     tb
-      //   //   });
-      //   // })
-      // );
-
-      // // console.log(results)
-
       const messages = results.map((notification) => {
         let show;
         if (notification.information == "Terdapat Agenda Terbaru") {
@@ -83,7 +58,7 @@ module.exports = {
             foto_kegiatan: show.foto_kegiatan,
             tanggal_kegiatan: timeFormat(show.createdAt)
           })
-        } else if(notification.information == "Request Surat Kepengurusan Baru") {
+        } else if (notification.information == "Request Surat Kepengurusan Baru") {
           show = notification.document
           return ({
             msg: 'Request Surat Kepengurusan Baru',
@@ -111,4 +86,48 @@ module.exports = {
       });
     }
   },
+
+  async getNotificationCitizen(req, res) {
+    try {
+      const getEvent = await agenda_service.list();
+
+      const agendaCitizen = getEvent.data.map((event) => {
+        console.log(event)
+        return ({
+          information: `Terdapat Agenda Baru ${event.jenis_kegiatan}`,
+          event
+        });
+      })
+
+      console.log(agendaCitizen)
+
+      const messages = agendaCitizen.map((notification) => {
+        let show;
+        show = notification.event
+        return ({
+          msg: 'Terdapat Agenda Baru',
+          id: show.id,
+          // name: show.warga.nama_lengkap,
+          // NIK: show.warga.no_nik,
+          jenis_kegiatan: show.jenis_kegiatan,
+          keterangan: show.keterangan,
+          foto_kegiatan: show.foto_kegiatan,
+          tanggal_kegiatan: timeFormat(show.createdAt)
+        })
+      });
+
+      const sortedMResult = sortTimeDecendingly(messages);
+
+      res.status(200).json({
+        status: "success",
+        data: sortedMResult
+      });
+
+    } catch (err) {
+      res.status(400).json({
+        status: "Failed",
+        message: err.message
+      });
+    }
+  }
 };

@@ -200,6 +200,11 @@ apiRouter.get("/api/notifications",
   controllers.api.notification.getAllNotification
 );
 
+apiRouter.get("/api/notifications/citizens",
+  middlewares.citizen_auth.authorize,
+  controllers.api.notification.getNotificationCitizen
+);
+
 apiRouter.use(controllers.api.application.handleNotFound);
 
 module.exports = apiRouter;
