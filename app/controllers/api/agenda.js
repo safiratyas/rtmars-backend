@@ -33,4 +33,37 @@ module.exports = {
       data: getAll
     });
   },
+
+  async deleteAgenda(req, res) {
+    try {
+      const id = req.params.id;
+      const agenda = await agenda_service.getOne({
+        where: {
+          id,
+        }
+      });
+
+      if (!agenda) {
+        res.status(404).json({
+          status: 'Failed',
+          message: `Agenda dengan ID ${id} tidak ditemukan!`,
+        });
+        return;
+      }
+
+      const destroy = await agenda_service.delete(id);
+      res.status(200).json({
+        status: 'OK',
+        message: `Agenda dengan ID ${id} berhasil dihapus`,
+      });
+
+    } catch (err) {
+      res.status(400).json({
+        error: {
+          name: err.name,
+          message: err.message,
+        }
+      });
+    }
+  },
 }

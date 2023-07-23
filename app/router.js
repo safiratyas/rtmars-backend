@@ -191,6 +191,11 @@ apiRouter.get("/api/agendas",
   controllers.api.agenda.getAllAgenda
 );
 
+apiRouter.delete("/api/agendas/:id",
+  middlewares.admin_auth.authorize,
+  controllers.api.agenda.deleteAgenda
+);
+
 /**
  * @Notifications Resources 
  */
