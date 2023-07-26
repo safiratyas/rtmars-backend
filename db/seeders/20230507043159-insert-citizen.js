@@ -28,39 +28,39 @@ module.exports = {
     const encryptedPassword = bcrypt.hashSync(password, 10);
 
     const listUsers = [{
-        name: 'Hwang In-youp',
+        name: 'Herlina',
+        gender: 'Wanita',
+        tempat_lahir: 'Jakarta',
+        tanggal_lahir: '1967-09-29',
+        umur: "55",
+      },
+      {
+        name: 'Ade Suryani',
+        gender: 'Wanita',
+        tempat_lahir: 'Jakarta',
+        tanggal_lahir: '1975-09-23',
+        umur: "47",
+      },
+      {
+        name: 'Hafid Buntaran',
         gender: 'Pria',
         tempat_lahir: 'Jakarta',
-        tanggal_lahir: '2002-01-26',
-        umur: "25",
+        tanggal_lahir: '1970-01-09',
+        umur: "43",
       },
       {
-        name: 'Cha Eun-Woo',
+        name: 'Eka Priyadi',
         gender: 'Pria',
         tempat_lahir: 'Jakarta',
-        tanggal_lahir: '1999-03-03',
-        umur: "27",
+        tanggal_lahir: '2005-02-22',
+        umur: "17",
       },
       {
-        name: 'Moon Ga-Young',
+        name: 'Ayunda',
         gender: 'Wanita',
         tempat_lahir: 'Jakarta',
-        tanggal_lahir: '2000-04-15',
-        umur: "28",
-      },
-      {
-        name: 'Park Yoo-Na',
-        gender: 'Wanita',
-        tempat_lahir: 'Jakarta',
-        tanggal_lahir: '1999-09-01',
-        umur: "30",
-      },
-      {
-        name: 'Kang Min-Ah',
-        gender: 'Wanita',
-        tempat_lahir: 'Jakarta',
-        tanggal_lahir: '2000-09-20',
-        umur: "27",
+        tanggal_lahir: '1979-02-03',
+        umur: "43",
       },
     ];
 

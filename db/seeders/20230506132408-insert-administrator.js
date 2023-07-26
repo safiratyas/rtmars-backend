@@ -22,44 +22,37 @@ module.exports = {
     const password = "12345678";
     const encryptedPassword = bcrypt.hashSync(password, 10);
 
-    const listUsers = [{
-        name: 'Reza Fahlevi Alhady',
+    const listUsers = [
+      {
+        name: 'Sapari Agustus',
         gender: 'Pria',
         tempat_lahir: 'Jakarta',
-        tanggal_lahir: '2002-01-26',
-        umur: "25",
+        tanggal_lahir: '1967-08-07',
+        umur: "55",
         tipe_pengurus: "RT"
       },
       {
-        name: 'Brandon Nicholas Salim',
+        name: 'Ricky Noviansyah',
         gender: 'Pria',
         tempat_lahir: 'Jakarta',
-        tanggal_lahir: '1999-03-03',
-        umur: "27",
+        tanggal_lahir: '1983-01-26',
+        umur: "39",
         tipe_pengurus: "Dasawisma"
       },
       {
-        name: 'Gusti Rayhan Gibayus',
-        gender: 'Pria',
-        tempat_lahir: 'Jakarta',
-        tanggal_lahir: '2000-04-15',
-        umur: "28",
-        tipe_pengurus: "Dasawisma"
-      },
-      {
-        name: 'Vanesha Prescilla',
+        name: 'Ismiaroh',
         gender: 'Wanita',
         tempat_lahir: 'Jakarta',
-        tanggal_lahir: '1999-09-01',
+        tanggal_lahir: '1976-09-08',
+        umur: "46",
+        tipe_pengurus: "Dasawisma"
+      },
+      {
+        name: 'Yulina',
+        gender: 'Wanita',
+        tempat_lahir: 'Jakarta',
+        tanggal_lahir: '1977-09-01',
         umur: "30",
-        tipe_pengurus: "Dasawisma"
-      },
-      {
-        name: 'Yoriko Angeline Agus Pebrianto',
-        gender: 'Wanita',
-        tempat_lahir: 'Jakarta',
-        tanggal_lahir: '2000-09-20',
-        umur: "27",
         tipe_pengurus: "Dasawisma"
       },
     ];
