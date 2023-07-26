@@ -14,7 +14,6 @@ module.exports = {
   async getAllNotification(req, res) {
     try {
       const getEvent = await agenda_service.list();
-      // console.log(getEvent + " GET EVENT")
 
       const getDocument = await document_service.list({
         include: {
@@ -25,7 +24,6 @@ module.exports = {
           ["id", "DESC"]
         ]
       });
-      // console.log(getDocument + " GET DOCUMENT")
 
       const results = [].concat(
         getEvent.data.map((event) => {
@@ -53,10 +51,10 @@ module.exports = {
             id: show.id,
             // name: show.warga.nama_lengkap,
             // NIK: show.warga.no_nik,
-            jenis_kegiatan: show.jenis_kegiatan,
+            jenis: show.jenis_kegiatan,
             keterangan: show.keterangan,
             foto_kegiatan: show.foto_kegiatan,
-            tanggal_kegiatan: timeFormat(show.createdAt)
+            tanggal: timeFormat(show.createdAt)
           })
         } else if (notification.information == "Request Surat Kepengurusan Baru") {
           show = notification.document
@@ -66,9 +64,9 @@ module.exports = {
             wargaID: show.id_warga,
             // name: show.warga.nama_lengkap,
             // NIK: show.warga.no_nik,
-            jenis_dokumen: show.jenis_dokumen,
+            jenis: show.jenis_dokumen,
             keterangan: show.keterangan,
-            tanggal_pengajuan: timeFormat(show.tanggal_pengajuan)
+            tanggal: timeFormat(show.tanggal_pengajuan)
           })
         }
       });
@@ -77,7 +75,7 @@ module.exports = {
 
       res.status(200).json({
         status: "Success",
-        sortedMsg
+        data: sortedMsg
       });
     } catch (err) {
       res.status(400).json({
@@ -98,8 +96,6 @@ module.exports = {
           event
         });
       })
-
-      console.log(agendaCitizen)
 
       const messages = agendaCitizen.map((notification) => {
         let show;

@@ -146,31 +146,4 @@ module.exports = {
       });
     }
   },
-
-  // async createAgenda(req, res) {
-  //   try {
-  //     const {
-  //       jenis_kegiatan,
-  //       keterangan,
-  //       foto_kegiatan,
-  //     } = req.body;
-
-  //     const createData = await citizen_service.create({
-  //       jenis_kelamin,
-  //       keterangan,
-  //       foto_kegiatan,
-  //     });
-
-  //     res.status(200).json({
-  //       status: 'OK',
-  //       message: `Kegiatan telah berhasil diinput.`,
-  //       // data: createData
-  //     });
-  //   } catch (err) {
-  //     res.status(422).json({
-  //       status: 'Failed',
-  //       message: err.message,
-  //     });
-  //   }
-  // },
 }

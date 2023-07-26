@@ -1,5 +1,8 @@
 const citizen_service = require("../../services/citizen")
 const {
+  Op
+} = require("sequelize");
+const {
   checkPassword,
   createToken,
   hashPassword
@@ -237,4 +240,17 @@ module.exports = {
       data: getAll
     });
   },
+
+  async listOfCitizen(req, res) {
+    const getAll = await citizen_service.list({
+      attributes: {
+        exclude: ['password']
+      }
+    });
+
+    res.status(200).json({
+      status: 'Success',
+      data: getAll
+    });
+  }
 }

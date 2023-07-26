@@ -72,6 +72,10 @@ apiRouter.get("/api/citizens",
   controllers.api.citizen.getAllCitizens
 );
 
+apiRouter.get("/api/totals/citizens",
+  controllers.api.citizen.listOfCitizen
+);
+
 /**
  * @Religion Resources 
  */
