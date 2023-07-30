@@ -29,7 +29,13 @@ module.exports = {
         tempat_lahir: 'Jakarta',
         tanggal_lahir: '1967-08-07',
         umur: "55",
-        tipe_pengurus: "RT"
+        tipe_pengurus: "RT",
+        no_ktp: 312120121020,
+        rt: 10,
+        rw: 10,
+        kelurahan: "Manggarai",
+        kecamatan: "Tebet",
+        kota_kabupaten: "Jakarta Selatan"
       },
       {
         name: 'Ricky Noviansyah',
@@ -37,7 +43,14 @@ module.exports = {
         tempat_lahir: 'Jakarta',
         tanggal_lahir: '1983-01-26',
         umur: "39",
-        tipe_pengurus: "Dasawisma"
+        tipe_pengurus: "Dasawisma",
+        no_ktp: 312120176020,
+        rt: 10,
+        rw: 10,
+        kelurahan: "Manggarai",
+        kecamatan: "Tebet",
+        kota_kabupaten: "Jakarta Selatan",
+        nama_kelompok_dasawisma: "KELAPA 010.010.002"
       },
       {
         name: 'Ismiaroh',
@@ -45,7 +58,14 @@ module.exports = {
         tempat_lahir: 'Jakarta',
         tanggal_lahir: '1976-09-08',
         umur: "46",
-        tipe_pengurus: "Dasawisma"
+        tipe_pengurus: "Dasawisma",
+        no_ktp: 312175121020,
+        rt: 10,
+        rw: 10,
+        kelurahan: "Manggarai",
+        kecamatan: "Tebet",
+        kota_kabupaten: "Jakarta Selatan",
+        nama_kelompok_dasawisma: "KELAPA 010.010.001"
       },
       {
         name: 'Yulina',
@@ -53,7 +73,14 @@ module.exports = {
         tempat_lahir: 'Jakarta',
         tanggal_lahir: '1977-09-01',
         umur: "30",
-        tipe_pengurus: "Dasawisma"
+        tipe_pengurus: "Dasawisma",
+        no_ktp: 312120091020,
+        rt: 10,
+        rw: 10,
+        kelurahan: "Manggarai",
+        kecamatan: "Tebet",
+        kota_kabupaten: "Jakarta Selatan",
+        nama_kelompok_dasawisma: "KELAPA 010.010.003"
       },
     ];
 
@@ -75,6 +102,13 @@ module.exports = {
             nama_lengkap: user.name,
             user_id: splitWord.toLowerCase(),
             password: encryptedPassword,
+            no_ktp: user.no_ktp,
+            rt: user.rt,
+            rw: user.rw,
+            kelurahan: user.kelurahan,
+            kecamatan: user.kecamatan,
+            kota_kabupaten: user.kota_kabupaten,
+            nama_kelompok_dasawisma: user.nama_kelompok_dasawisma,
             tempat_lahir: user.tempat_lahir,
             tanggal_lahir: user.tanggal_lahir,
             tipe_pengurus: user.tipe_pengurus,

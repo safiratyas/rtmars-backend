@@ -21,6 +21,27 @@ module.exports = {
       nama: {
         type: Sequelize.STRING
       },
+      no_ktp: {
+        type: Sequelize.STRING
+      },
+      rt: {
+        type: Sequelize.STRING
+      },
+      rw: {
+        type: Sequelize.STRING
+      },
+      kelurahan: {
+        type: Sequelize.STRING
+      },
+      kecamatan: {
+        type: Sequelize.STRING
+      },
+      kota_kabupaten: {
+        type: Sequelize.STRING
+      },
+      nama_kelompok_dasawisma: {
+        type: Sequelize.STRING
+      },
       foto_pengurus: {
         type: Sequelize.STRING
       },
