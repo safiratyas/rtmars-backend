@@ -29,6 +29,16 @@ apiRouter.get("/api/admins",
   controllers.api.administrator.getAllAdmins
 );
 
+apiRouter.post("/api/admins/citizens/reports",
+  middlewares.admin_auth.authorize,
+  controllers.api.administrator.createCitizenReport
+);
+
+apiRouter.get("/api/admins/report/all",
+  middlewares.admin_auth.authorize,
+  controllers.api.administrator.getAllReports
+);
+
 /**
  * @Citizen Resources 
  */

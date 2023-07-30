@@ -201,4 +201,14 @@ module.exports = {
       });
     }
   },
+
+ 
+  async getAllReports(req, res) {
+    const getAll = await report_service.list();
+
+    res.status(200).json({
+      status: 'Success',
+      data: getAll
+    });
+  },
 }

@@ -66,6 +66,12 @@ module.exports = {
       kegiatan_perencanaan_sehat: {
         type: Sequelize.BOOLEAN
       },
+      bulan: {
+        type: Sequelize.STRING
+      },
+      tahun: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

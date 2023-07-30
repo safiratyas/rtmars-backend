@@ -34,6 +34,8 @@ module.exports = (sequelize, DataTypes) => {
     kegiatan_pengembangan_koperasi: DataTypes.BOOLEAN,
     kegiatan_kelestarian: DataTypes.BOOLEAN,
     kegiatan_perencanaan_sehat: DataTypes.BOOLEAN,
+    bulan: DataTypes.STRING,
+    tahun: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Pendataan',
