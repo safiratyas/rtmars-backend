@@ -1,5 +1,6 @@
-const administrator_service = require("../../services/administrator")
+const administrator_service = require("../../services/administrator");
 const citizen_service = require("../../services/citizen");
+const report_service = require("../../services/report");
 const {
   checkPassword,
   createToken
@@ -139,6 +140,59 @@ module.exports = {
         status: 'OK',
         message: `Warga telah berhasil diinput.`,
         // data: createData
+      });
+    } catch (err) {
+      res.status(422).json({
+        status: 'Failed',
+        message: err.message,
+      });
+    }
+  },
+
+  async createCitizenReport(req, res) {
+    try {
+      const {
+        jumlah_rumah,
+        jumlah_keluarga,
+        jumlah_warga,
+        jumlah_bayi,
+        jumlah_meninggal,
+        jumlah_pindahan,
+        kegiatan_pancasila,
+        kegiatan_gotong_royong,
+        kegiatan_pangan,
+        kegiatan_sandang,
+        kegiatan_tata_laksana,
+        kegiatan_pendidikan_terampil,
+        kegiatan_kesehatan,
+        kegiatan_pengembangan_koperasi,
+        kegiatan_kelestarian,
+        kegiatan_perencanaan_sehat,
+      } = req.body;
+
+      const createData = await report_service.create({
+        jumlah_rumah,
+        jumlah_keluarga,
+        jumlah_warga,
+        jumlah_bayi,
+        jumlah_meninggal,
+        jumlah_pindahan,
+        kegiatan_pancasila,
+        kegiatan_gotong_royong,
+        kegiatan_pangan,
+        kegiatan_sandang,
+        kegiatan_tata_laksana,
+        kegiatan_pendidikan_terampil,
+        kegiatan_kesehatan,
+        kegiatan_pengembangan_koperasi,
+        kegiatan_kelestarian,
+        kegiatan_perencanaan_sehat,
+        id_pengurus: req.admin.id
+      });
+
+      res.status(200).json({
+        status: 'OK',
+        message: "Pendataan Warga telah berhasil diinput.",
       });
     } catch (err) {
       res.status(422).json({
