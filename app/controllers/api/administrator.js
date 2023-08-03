@@ -1,6 +1,7 @@
 const administrator_service = require("../../services/administrator");
 const citizen_service = require("../../services/citizen");
 const report_service = require("../../services/report");
+const getCurrentMonth = require("../../utils/getCurrentMonth");
 const {
   checkPassword,
   createToken
@@ -170,6 +171,10 @@ module.exports = {
         kegiatan_perencanaan_sehat,
       } = req.body;
 
+      const currentDay = new Date();
+      const currentMonth = currentDay.getMonth();
+      const currentYear = currentDay.getFullYear();
+
       const createData = await report_service.create({
         jumlah_rumah,
         jumlah_keluarga,
@@ -187,6 +192,8 @@ module.exports = {
         kegiatan_pengembangan_koperasi,
         kegiatan_kelestarian,
         kegiatan_perencanaan_sehat,
+        bulan: getCurrentMonth(currentMonth),
+        tahun: currentYear,
         id_pengurus: req.admin.id
       });
 
@@ -202,7 +209,7 @@ module.exports = {
     }
   },
 
- 
+
   async getAllReports(req, res) {
     const getAll = await report_service.list();
 
@@ -210,5 +217,48 @@ module.exports = {
       status: 'Success',
       data: getAll
     });
+  },
+
+  async deleteReport(req, res) {
+    try {
+      const id = req.params.id;
+      const report = await report_service.getOne({
+        where: {
+          id,
+        }
+      });
+
+      if (!report) {
+        res.status(404).json({
+          status: 'Failed',
+          message: `Laporan dengan ID ${id} tidak ditemukan!`,
+        });
+        return;
+      }
+
+      const compareId = req.admin.id === report.id_pengurus;
+
+      if (!compareId) {
+        res.status(404).json({
+          status: 'Unauthorized',
+          message: 'Pengurus hanya bisa menghapus data dia sendiri!'
+        });
+        return;
+      }
+
+      const destroy = await report_service.delete(id);
+      res.status(200).json({
+        status: 'OK',
+        message: `Laporan Warga dengan ID ${id} berhasil dihapus`,
+      });
+
+    } catch (err) {
+      res.status(400).json({
+        error: {
+          name: err.name,
+          message: err.message,
+        }
+      });
+    }
   },
 }

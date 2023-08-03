@@ -39,6 +39,11 @@ apiRouter.get("/api/admins/report/all",
   controllers.api.administrator.getAllReports
 );
 
+apiRouter.delete("/api/admins/destroy/report/:id",
+  middlewares.admin_auth.authorize,
+  controllers.api.administrator.deleteReport
+);
+
 /**
  * @Citizen Resources 
  */
